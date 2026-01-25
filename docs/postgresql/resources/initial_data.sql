@@ -727,59 +727,372 @@ INSERT INTO products (name, description, price, discount, stock, category_id, at
 
 -- ============================================
 -- 注文データ (様々なステータスの注文)
+-- 注文しないユーザー: 15, 27, 33, 38, 44, 47, 50
+-- 各ユーザーの注文数: 1〜10件
 -- ============================================
 INSERT INTO orders (user_id, status, total_amount, ordered_at) VALUES
-  (1, 'delivered', 189800.00, NOW() - INTERVAL '30 days'),
-  (1, 'delivered', 3280.00, NOW() - INTERVAL '25 days'),
-  (2, 'delivered', 59800.00, NOW() - INTERVAL '28 days'),
-  (3, 'shipped', 164800.00, NOW() - INTERVAL '5 days'),
-  (4, 'paid', 298000.00, NOW() - INTERVAL '2 days'),
-  (5, 'pending', 39800.00, NOW() - INTERVAL '1 day'),
-  (6, 'delivered', 6990.00, NOW() - INTERVAL '20 days'),
-  (7, 'delivered', 13200.00, NOW() - INTERVAL '18 days'),
-  (8, 'shipped', 253000.00, NOW() - INTERVAL '4 days'),
-  (9, 'paid', 16500.00, NOW() - INTERVAL '1 day'),
-  (10, 'delivered', 864.00, NOW() - INTERVAL '15 days'),
-  (11, 'delivered', 4980.00, NOW() - INTERVAL '22 days'),
-  (12, 'shipped', 328900.00, NOW() - INTERVAL '3 days'),
-  (13, 'cancelled', 49500.00, NOW() - INTERVAL '10 days'),
-  (14, 'delivered', 1650.00, NOW() - INTERVAL '12 days'),
-  (15, 'pending', 62800.00, NOW() - INTERVAL '6 hours'),
-  (16, 'delivered', 2980.00, NOW() - INTERVAL '8 days'),
-  (17, 'paid', 99000.00, NOW() - INTERVAL '1 day'),
-  (18, 'delivered', 24200.00, NOW() - INTERVAL '14 days'),
-  (19, 'shipped', 37980.00, NOW() - INTERVAL '2 days'),
-  (20, 'delivered', 4400.00, NOW() - INTERVAL '16 days'),
-  (21, 'pending', 179800.00, NOW() - INTERVAL '3 hours'),
-  (22, 'delivered', 7990.00, NOW() - INTERVAL '19 days'),
-  (23, 'paid', 48800.00, NOW() - INTERVAL '1 day'),
-  (24, 'delivered', 528.00, NOW() - INTERVAL '11 days'),
-  (25, 'shipped', 86680.00, NOW() - INTERVAL '4 days'),
-  (26, 'delivered', 39600.00, NOW() - INTERVAL '21 days'),
-  (27, 'cancelled', 298800.00, NOW() - INTERVAL '7 days'),
-  (28, 'delivered', 2420.00, NOW() - INTERVAL '13 days'),
-  (29, 'paid', 129800.00, NOW() - INTERVAL '2 days'),
-  (30, 'delivered', 598.00, NOW() - INTERVAL '9 days'),
-  (31, 'shipped', 62800.00, NOW() - INTERVAL '3 days'),
-  (32, 'delivered', 1980.00, NOW() - INTERVAL '17 days'),
-  (33, 'pending', 66980.00, NOW() - INTERVAL '12 hours'),
-  (34, 'delivered', 3300.00, NOW() - INTERVAL '23 days'),
-  (35, 'paid', 19800.00, NOW() - INTERVAL '1 day'),
-  (36, 'delivered', 880.00, NOW() - INTERVAL '6 days'),
-  (37, 'shipped', 249800.00, NOW() - INTERVAL '5 days'),
-  (38, 'delivered', 1540.00, NOW() - INTERVAL '24 days'),
-  (39, 'cancelled', 159900.00, NOW() - INTERVAL '8 days'),
-  (40, 'delivered', 4480.00, NOW() - INTERVAL '26 days'),
-  (41, 'pending', 98800.00, NOW() - INTERVAL '4 hours'),
-  (42, 'delivered', 2090.00, NOW() - INTERVAL '27 days'),
-  (43, 'paid', 5500.00, NOW() - INTERVAL '1 day'),
-  (44, 'delivered', 128.00, NOW() - INTERVAL '10 days'),
-  (45, 'shipped', 176800.00, NOW() - INTERVAL '6 days'),
-  (46, 'delivered', 6578.00, NOW() - INTERVAL '29 days'),
-  (47, 'paid', 32800.00, NOW() - INTERVAL '2 days'),
-  (48, 'delivered', 1320.00, NOW() - INTERVAL '7 days'),
-  (49, 'pending', 39900.00, NOW() - INTERVAL '8 hours'),
-  (50, 'delivered', 10560.00, NOW() - INTERVAL '31 days');
+  -- user_id: 1 (10件)
+  (1, 'delivered', 189800.00, NOW() - INTERVAL '350 days'),
+  (1, 'delivered', 3280.00, NOW() - INTERVAL '320 days'),
+  (1, 'delivered', 59800.00, NOW() - INTERVAL '280 days'),
+  (1, 'delivered', 16500.00, NOW() - INTERVAL '240 days'),
+  (1, 'delivered', 4980.00, NOW() - INTERVAL '200 days'),
+  (1, 'delivered', 24200.00, NOW() - INTERVAL '150 days'),
+  (1, 'shipped', 39600.00, NOW() - INTERVAL '45 days'),
+  (1, 'paid', 12800.00, NOW() - INTERVAL '10 days'),
+  (1, 'pending', 7920.00, NOW() - INTERVAL '2 days'),
+  (1, 'pending', 2990.00, NOW() - INTERVAL '6 hours'),
+
+  -- user_id: 2 (8件)
+  (2, 'delivered', 164800.00, NOW() - INTERVAL '340 days'),
+  (2, 'delivered', 6990.00, NOW() - INTERVAL '290 days'),
+  (2, 'delivered', 13200.00, NOW() - INTERVAL '230 days'),
+  (2, 'delivered', 864.00, NOW() - INTERVAL '180 days'),
+  (2, 'delivered', 7990.00, NOW() - INTERVAL '120 days'),
+  (2, 'shipped', 49800.00, NOW() - INTERVAL '30 days'),
+  (2, 'paid', 3300.00, NOW() - INTERVAL '8 days'),
+  (2, 'pending', 1650.00, NOW() - INTERVAL '1 day'),
+
+  -- user_id: 3 (7件)
+  (3, 'delivered', 298000.00, NOW() - INTERVAL '330 days'),
+  (3, 'delivered', 39800.00, NOW() - INTERVAL '270 days'),
+  (3, 'delivered', 16940.00, NOW() - INTERVAL '210 days'),
+  (3, 'delivered', 528.00, NOW() - INTERVAL '160 days'),
+  (3, 'shipped', 86680.00, NOW() - INTERVAL '25 days'),
+  (3, 'paid', 5500.00, NOW() - INTERVAL '5 days'),
+  (3, 'pending', 2980.00, NOW() - INTERVAL '12 hours'),
+
+  -- user_id: 4 (6件)
+  (4, 'delivered', 253000.00, NOW() - INTERVAL '310 days'),
+  (4, 'delivered', 36850.00, NOW() - INTERVAL '250 days'),
+  (4, 'delivered', 2420.00, NOW() - INTERVAL '190 days'),
+  (4, 'shipped', 62800.00, NOW() - INTERVAL '20 days'),
+  (4, 'paid', 19800.00, NOW() - INTERVAL '4 days'),
+  (4, 'cancelled', 99000.00, NOW() - INTERVAL '35 days'),
+
+  -- user_id: 5 (9件)
+  (5, 'delivered', 328900.00, NOW() - INTERVAL '345 days'),
+  (5, 'delivered', 49500.00, NOW() - INTERVAL '300 days'),
+  (5, 'delivered', 1990.00, NOW() - INTERVAL '260 days'),
+  (5, 'delivered', 14300.00, NOW() - INTERVAL '220 days'),
+  (5, 'delivered', 4400.00, NOW() - INTERVAL '170 days'),
+  (5, 'delivered', 598.00, NOW() - INTERVAL '130 days'),
+  (5, 'shipped', 129800.00, NOW() - INTERVAL '18 days'),
+  (5, 'paid', 6578.00, NOW() - INTERVAL '6 days'),
+  (5, 'pending', 32800.00, NOW() - INTERVAL '1 day'),
+
+  -- user_id: 6 (5件)
+  (6, 'delivered', 179800.00, NOW() - INTERVAL '335 days'),
+  (6, 'delivered', 1540.00, NOW() - INTERVAL '285 days'),
+  (6, 'delivered', 4480.00, NOW() - INTERVAL '195 days'),
+  (6, 'shipped', 176800.00, NOW() - INTERVAL '22 days'),
+  (6, 'paid', 1320.00, NOW() - INTERVAL '3 days'),
+
+  -- user_id: 7 (4件)
+  (7, 'delivered', 159900.00, NOW() - INTERVAL '325 days'),
+  (7, 'delivered', 2090.00, NOW() - INTERVAL '265 days'),
+  (7, 'shipped', 39900.00, NOW() - INTERVAL '15 days'),
+  (7, 'paid', 10560.00, NOW() - INTERVAL '2 days'),
+
+  -- user_id: 8 (7件)
+  (8, 'delivered', 98800.00, NOW() - INTERVAL '355 days'),
+  (8, 'delivered', 5500.00, NOW() - INTERVAL '305 days'),
+  (8, 'delivered', 128.00, NOW() - INTERVAL '245 days'),
+  (8, 'delivered', 3490.00, NOW() - INTERVAL '185 days'),
+  (8, 'shipped', 66980.00, NOW() - INTERVAL '28 days'),
+  (8, 'paid', 4990.00, NOW() - INTERVAL '7 days'),
+  (8, 'pending', 2990.00, NOW() - INTERVAL '8 hours'),
+
+  -- user_id: 9 (3件)
+  (9, 'delivered', 249800.00, NOW() - INTERVAL '315 days'),
+  (9, 'delivered', 880.00, NOW() - INTERVAL '175 days'),
+  (9, 'shipped', 16500.00, NOW() - INTERVAL '12 days'),
+
+  -- user_id: 10 (6件)
+  (10, 'delivered', 59800.00, NOW() - INTERVAL '360 days'),
+  (10, 'delivered', 62800.00, NOW() - INTERVAL '295 days'),
+  (10, 'delivered', 1650.00, NOW() - INTERVAL '235 days'),
+  (10, 'delivered', 2980.00, NOW() - INTERVAL '165 days'),
+  (10, 'shipped', 24200.00, NOW() - INTERVAL '32 days'),
+  (10, 'paid', 7990.00, NOW() - INTERVAL '5 days'),
+
+  -- user_id: 11 (8件)
+  (11, 'delivered', 128800.00, NOW() - INTERVAL '348 days'),
+  (11, 'delivered', 50600.00, NOW() - INTERVAL '288 days'),
+  (11, 'delivered', 14850.00, NOW() - INTERVAL '228 days'),
+  (11, 'delivered', 35800.00, NOW() - INTERVAL '168 days'),
+  (11, 'delivered', 19800.00, NOW() - INTERVAL '108 days'),
+  (11, 'shipped', 62800.00, NOW() - INTERVAL '24 days'),
+  (11, 'paid', 3300.00, NOW() - INTERVAL '4 days'),
+  (11, 'pending', 1870.00, NOW() - INTERVAL '10 hours'),
+
+  -- user_id: 12 (5件)
+  (12, 'delivered', 172800.00, NOW() - INTERVAL '338 days'),
+  (12, 'delivered', 92800.00, NOW() - INTERVAL '258 days'),
+  (12, 'delivered', 124800.00, NOW() - INTERVAL '178 days'),
+  (12, 'shipped', 176800.00, NOW() - INTERVAL '19 days'),
+  (12, 'paid', 49800.00, NOW() - INTERVAL '3 days'),
+
+  -- user_id: 13 (4件)
+  (13, 'delivered', 79800.00, NOW() - INTERVAL '328 days'),
+  (13, 'delivered', 49800.00, NOW() - INTERVAL '218 days'),
+  (13, 'cancelled', 298100.00, NOW() - INTERVAL '65 days'),
+  (13, 'shipped', 24800.00, NOW() - INTERVAL '14 days'),
+
+  -- user_id: 14 (6件)
+  (14, 'delivered', 16940.00, NOW() - INTERVAL '318 days'),
+  (14, 'delivered', 36850.00, NOW() - INTERVAL '248 days'),
+  (14, 'delivered', 2990.00, NOW() - INTERVAL '188 days'),
+  (14, 'delivered', 16500.00, NOW() - INTERVAL '128 days'),
+  (14, 'shipped', 14300.00, NOW() - INTERVAL '21 days'),
+  (14, 'paid', 6380.00, NOW() - INTERVAL '2 days'),
+
+  -- user_id: 15 は注文なし
+
+  -- user_id: 16 (7件)
+  (16, 'delivered', 298800.00, NOW() - INTERVAL '358 days'),
+  (16, 'delivered', 178000.00, NOW() - INTERVAL '298 days'),
+  (16, 'delivered', 248000.00, NOW() - INTERVAL '238 days'),
+  (16, 'delivered', 59800.00, NOW() - INTERVAL '158 days'),
+  (16, 'delivered', 39800.00, NOW() - INTERVAL '98 days'),
+  (16, 'shipped', 49500.00, NOW() - INTERVAL '26 days'),
+  (16, 'paid', 41800.00, NOW() - INTERVAL '6 days'),
+
+  -- user_id: 17 (3件)
+  (17, 'delivered', 14850.00, NOW() - INTERVAL '308 days'),
+  (17, 'delivered', 19800.00, NOW() - INTERVAL '148 days'),
+  (17, 'paid', 14800.00, NOW() - INTERVAL '1 day'),
+
+  -- user_id: 18 (9件)
+  (18, 'delivered', 365000.00, NOW() - INTERVAL '352 days'),
+  (18, 'delivered', 598000.00, NOW() - INTERVAL '302 days'),
+  (18, 'delivered', 248600.00, NOW() - INTERVAL '252 days'),
+  (18, 'delivered', 62800.00, NOW() - INTERVAL '202 days'),
+  (18, 'delivered', 79200.00, NOW() - INTERVAL '152 days'),
+  (18, 'delivered', 68000.00, NOW() - INTERVAL '102 days'),
+  (18, 'shipped', 57200.00, NOW() - INTERVAL '33 days'),
+  (18, 'paid', 7480.00, NOW() - INTERVAL '9 days'),
+  (18, 'pending', 1990.00, NOW() - INTERVAL '4 hours'),
+
+  -- user_id: 19 (1件)
+  (19, 'delivered', 16500.00, NOW() - INTERVAL '278 days'),
+
+  -- user_id: 20 (5件)
+  (20, 'delivered', 2980.00, NOW() - INTERVAL '342 days'),
+  (20, 'delivered', 3280.00, NOW() - INTERVAL '242 days'),
+  (20, 'delivered', 498.00, NOW() - INTERVAL '142 days'),
+  (20, 'shipped', 548.00, NOW() - INTERVAL '17 days'),
+  (20, 'paid', 398.00, NOW() - INTERVAL '3 days'),
+
+  -- user_id: 21 (10件)
+  (21, 'delivered', 864.00, NOW() - INTERVAL '362 days'),
+  (21, 'delivered', 1728.00, NOW() - INTERVAL '322 days'),
+  (21, 'delivered', 1188.00, NOW() - INTERVAL '282 days'),
+  (21, 'delivered', 3240.00, NOW() - INTERVAL '242 days'),
+  (21, 'delivered', 1728.00, NOW() - INTERVAL '202 days'),
+  (21, 'delivered', 298.00, NOW() - INTERVAL '162 days'),
+  (21, 'delivered', 128.00, NOW() - INTERVAL '122 days'),
+  (21, 'shipped', 198.00, NOW() - INTERVAL '38 days'),
+  (21, 'paid', 198.00, NOW() - INTERVAL '8 days'),
+  (21, 'pending', 498.00, NOW() - INTERVAL '16 hours'),
+
+  -- user_id: 22 (4件)
+  (22, 'delivered', 2280.00, NOW() - INTERVAL '312 days'),
+  (22, 'delivered', 2480.00, NOW() - INTERVAL '212 days'),
+  (22, 'shipped', 998.00, NOW() - INTERVAL '23 days'),
+  (22, 'paid', 598.00, NOW() - INTERVAL '4 days'),
+
+  -- user_id: 23 (6件)
+  (23, 'delivered', 698.00, NOW() - INTERVAL '356 days'),
+  (23, 'delivered', 4980.00, NOW() - INTERVAL '286 days'),
+  (23, 'delivered', 3300.00, NOW() - INTERVAL '216 days'),
+  (23, 'delivered', 15000.00, NOW() - INTERVAL '146 days'),
+  (23, 'shipped', 4880.00, NOW() - INTERVAL '27 days'),
+  (23, 'paid', 398.00, NOW() - INTERVAL '5 days'),
+
+  -- user_id: 24 (8件)
+  (24, 'delivered', 298.00, NOW() - INTERVAL '346 days'),
+  (24, 'delivered', 398.00, NOW() - INTERVAL '296 days'),
+  (24, 'delivered', 898.00, NOW() - INTERVAL '246 days'),
+  (24, 'delivered', 298.00, NOW() - INTERVAL '196 days'),
+  (24, 'delivered', 2090.00, NOW() - INTERVAL '136 days'),
+  (24, 'shipped', 1870.00, NOW() - INTERVAL '31 days'),
+  (24, 'paid', 1650.00, NOW() - INTERVAL '7 days'),
+  (24, 'pending', 528.00, NOW() - INTERVAL '14 hours'),
+
+  -- user_id: 25 (3件)
+  (25, 'delivered', 1980.00, NOW() - INTERVAL '306 days'),
+  (25, 'delivered', 2420.00, NOW() - INTERVAL '156 days'),
+  (25, 'shipped', 1430.00, NOW() - INTERVAL '16 days'),
+
+  -- user_id: 26 (7件)
+  (26, 'delivered', 528.00, NOW() - INTERVAL '364 days'),
+  (26, 'delivered', 730.00, NOW() - INTERVAL '304 days'),
+  (26, 'delivered', 550.00, NOW() - INTERVAL '244 days'),
+  (26, 'delivered', 1100.00, NOW() - INTERVAL '184 days'),
+  (26, 'delivered', 693.00, NOW() - INTERVAL '124 days'),
+  (26, 'shipped', 3300.00, NOW() - INTERVAL '29 days'),
+  (26, 'paid', 3300.00, NOW() - INTERVAL '6 days'),
+
+  -- user_id: 27 は注文なし
+
+  -- user_id: 28 (5件)
+  (28, 'delivered', 3080.00, NOW() - INTERVAL '334 days'),
+  (28, 'delivered', 2750.00, NOW() - INTERVAL '234 days'),
+  (28, 'delivered', 5280.00, NOW() - INTERVAL '134 days'),
+  (28, 'shipped', 6380.00, NOW() - INTERVAL '34 days'),
+  (28, 'paid', 27500.00, NOW() - INTERVAL '9 days'),
+
+  -- user_id: 29 (4件)
+  (29, 'delivered', 16500.00, NOW() - INTERVAL '324 days'),
+  (29, 'delivered', 19800.00, NOW() - INTERVAL '204 days'),
+  (29, 'shipped', 8990.00, NOW() - INTERVAL '13 days'),
+  (29, 'paid', 29800.00, NOW() - INTERVAL '2 days'),
+
+  -- user_id: 30 (6件)
+  (30, 'delivered', 1980.00, NOW() - INTERVAL '354 days'),
+  (30, 'delivered', 12800.00, NOW() - INTERVAL '274 days'),
+  (30, 'delivered', 2980.00, NOW() - INTERVAL '194 days'),
+  (30, 'delivered', 1680.00, NOW() - INTERVAL '114 days'),
+  (30, 'shipped', 19800.00, NOW() - INTERVAL '36 days'),
+  (30, 'paid', 49800.00, NOW() - INTERVAL '8 days'),
+
+  -- user_id: 31 (8件)
+  (31, 'delivered', 34100.00, NOW() - INTERVAL '344 days'),
+  (31, 'delivered', 1980.00, NOW() - INTERVAL '294 days'),
+  (31, 'delivered', 9980.00, NOW() - INTERVAL '244 days'),
+  (31, 'delivered', 5480.00, NOW() - INTERVAL '194 days'),
+  (31, 'delivered', 5990.00, NOW() - INTERVAL '144 days'),
+  (31, 'delivered', 14300.00, NOW() - INTERVAL '94 days'),
+  (31, 'shipped', 16500.00, NOW() - INTERVAL '22 days'),
+  (31, 'paid', 12800.00, NOW() - INTERVAL '4 days'),
+
+  -- user_id: 32 (2件)
+  (32, 'delivered', 15400.00, NOW() - INTERVAL '284 days'),
+  (32, 'shipped', 12800.00, NOW() - INTERVAL '18 days'),
+
+  -- user_id: 33 は注文なし
+
+  -- user_id: 34 (9件)
+  (34, 'delivered', 39900.00, NOW() - INTERVAL '359 days'),
+  (34, 'delivered', 19800.00, NOW() - INTERVAL '319 days'),
+  (34, 'delivered', 12800.00, NOW() - INTERVAL '279 days'),
+  (34, 'delivered', 1999.00, NOW() - INTERVAL '239 days'),
+  (34, 'delivered', 14990.00, NOW() - INTERVAL '199 days'),
+  (34, 'delivered', 1490.00, NOW() - INTERVAL '159 days'),
+  (34, 'shipped', 16800.00, NOW() - INTERVAL '37 days'),
+  (34, 'paid', 39600.00, NOW() - INTERVAL '10 days'),
+  (34, 'pending', 86680.00, NOW() - INTERVAL '1 day'),
+
+  -- user_id: 35 (5件)
+  (35, 'delivered', 4980.00, NOW() - INTERVAL '329 days'),
+  (35, 'delivered', 1980.00, NOW() - INTERVAL '229 days'),
+  (35, 'delivered', 2480.00, NOW() - INTERVAL '129 days'),
+  (35, 'shipped', 5980.00, NOW() - INTERVAL '25 days'),
+  (35, 'paid', 39800.00, NOW() - INTERVAL '5 days'),
+
+  -- user_id: 36 (4件)
+  (36, 'delivered', 99000.00, NOW() - INTERVAL '349 days'),
+  (36, 'delivered', 39800.00, NOW() - INTERVAL '249 days'),
+  (36, 'shipped', 19800.00, NOW() - INTERVAL '35 days'),
+  (36, 'paid', 32800.00, NOW() - INTERVAL '7 days'),
+
+  -- user_id: 37 (7件)
+  (37, 'delivered', 98800.00, NOW() - INTERVAL '339 days'),
+  (37, 'delivered', 129800.00, NOW() - INTERVAL '289 days'),
+  (37, 'delivered', 59978.00, NOW() - INTERVAL '239 days'),
+  (37, 'delivered', 7920.00, NOW() - INTERVAL '189 days'),
+  (37, 'delivered', 9680.00, NOW() - INTERVAL '139 days'),
+  (37, 'shipped', 6578.00, NOW() - INTERVAL '28 days'),
+  (37, 'paid', 6578.00, NOW() - INTERVAL '6 days'),
+
+  -- user_id: 38 は注文なし
+
+  -- user_id: 39 (6件)
+  (39, 'delivered', 9480.00, NOW() - INTERVAL '357 days'),
+  (39, 'delivered', 7678.00, NOW() - INTERVAL '287 days'),
+  (39, 'delivered', 4400.00, NOW() - INTERVAL '217 days'),
+  (39, 'cancelled', 4378.00, NOW() - INTERVAL '85 days'),
+  (39, 'shipped', 3278.00, NOW() - INTERVAL '30 days'),
+  (39, 'paid', 4950.00, NOW() - INTERVAL '8 days'),
+
+  -- user_id: 40 (3件)
+  (40, 'delivered', 1100.00, NOW() - INTERVAL '317 days'),
+  (40, 'delivered', 1540.00, NOW() - INTERVAL '177 days'),
+  (40, 'shipped', 2420.00, NOW() - INTERVAL '15 days'),
+
+  -- user_id: 41 (10件)
+  (41, 'delivered', 4480.00, NOW() - INTERVAL '361 days'),
+  (41, 'delivered', 5500.00, NOW() - INTERVAL '321 days'),
+  (41, 'delivered', 8800.00, NOW() - INTERVAL '281 days'),
+  (41, 'delivered', 4950.00, NOW() - INTERVAL '241 days'),
+  (41, 'delivered', 5500.00, NOW() - INTERVAL '201 days'),
+  (41, 'delivered', 1320.00, NOW() - INTERVAL '161 days'),
+  (41, 'delivered', 990.00, NOW() - INTERVAL '121 days'),
+  (41, 'shipped', 2750.00, NOW() - INTERVAL '41 days'),
+  (41, 'paid', 37980.00, NOW() - INTERVAL '11 days'),
+  (41, 'pending', 66980.00, NOW() - INTERVAL '3 days'),
+
+  -- user_id: 42 (5件)
+  (42, 'delivered', 24200.00, NOW() - INTERVAL '351 days'),
+  (42, 'delivered', 16500.00, NOW() - INTERVAL '251 days'),
+  (42, 'delivered', 980.00, NOW() - INTERVAL '151 days'),
+  (42, 'shipped', 5280.00, NOW() - INTERVAL '24 days'),
+  (42, 'paid', 2860.00, NOW() - INTERVAL '4 days'),
+
+  -- user_id: 43 (4件)
+  (43, 'delivered', 48800.00, NOW() - INTERVAL '331 days'),
+  (43, 'delivered', 32800.00, NOW() - INTERVAL '221 days'),
+  (43, 'shipped', 22000.00, NOW() - INTERVAL '19 days'),
+  (43, 'paid', 880.00, NOW() - INTERVAL '2 days'),
+
+  -- user_id: 44 は注文なし
+
+  -- user_id: 45 (6件)
+  (45, 'delivered', 598.00, NOW() - INTERVAL '363 days'),
+  (45, 'delivered', 298.00, NOW() - INTERVAL '303 days'),
+  (45, 'delivered', 798.00, NOW() - INTERVAL '243 days'),
+  (45, 'delivered', 1563.00, NOW() - INTERVAL '183 days'),
+  (45, 'shipped', 3980.00, NOW() - INTERVAL '39 days'),
+  (45, 'paid', 4980.00, NOW() - INTERVAL '9 days'),
+
+  -- user_id: 46 (8件)
+  (46, 'delivered', 3490.00, NOW() - INTERVAL '353 days'),
+  (46, 'delivered', 880.00, NOW() - INTERVAL '293 days'),
+  (46, 'delivered', 498.00, NOW() - INTERVAL '233 days'),
+  (46, 'delivered', 2640.00, NOW() - INTERVAL '173 days'),
+  (46, 'delivered', 1540.00, NOW() - INTERVAL '113 days'),
+  (46, 'shipped', 2860.00, NOW() - INTERVAL '33 days'),
+  (46, 'paid', 858.00, NOW() - INTERVAL '7 days'),
+  (46, 'pending', 2420.00, NOW() - INTERVAL '18 hours'),
+
+  -- user_id: 47 は注文なし
+
+  -- user_id: 48 (3件)
+  (48, 'delivered', 39800.00, NOW() - INTERVAL '313 days'),
+  (48, 'delivered', 19800.00, NOW() - INTERVAL '163 days'),
+  (48, 'shipped', 1280.00, NOW() - INTERVAL '20 days'),
+
+  -- user_id: 49 (7件)
+  (49, 'delivered', 398.00, NOW() - INTERVAL '343 days'),
+  (49, 'delivered', 19800.00, NOW() - INTERVAL '283 days'),
+  (49, 'delivered', 1280.00, NOW() - INTERVAL '223 days'),
+  (49, 'delivered', 128.00, NOW() - INTERVAL '153 days'),
+  (49, 'delivered', 198.00, NOW() - INTERVAL '93 days'),
+  (49, 'shipped', 298.00, NOW() - INTERVAL '23 days'),
+  (49, 'paid', 398.00, NOW() - INTERVAL '3 days'),
+
+  -- user_id: 50 は注文なし
+
+  -- 追加のcancelled注文（バランス調整）
+  (4, 'cancelled', 59800.00, NOW() - INTERVAL '75 days'),
+  (7, 'cancelled', 24200.00, NOW() - INTERVAL '55 days'),
+  (11, 'cancelled', 16500.00, NOW() - INTERVAL '45 days'),
+  (18, 'cancelled', 32800.00, NOW() - INTERVAL '70 days'),
+  (23, 'cancelled', 7990.00, NOW() - INTERVAL '60 days'),
+  (31, 'cancelled', 3300.00, NOW() - INTERVAL '50 days'),
+  (37, 'cancelled', 49500.00, NOW() - INTERVAL '80 days'),
+  (46, 'cancelled', 1990.00, NOW() - INTERVAL '68 days');
 
 -- ============================================
 -- 注文明細 (order_items)
