@@ -1097,18 +1097,27 @@ INSERT INTO orders (user_id, status, total_amount, ordered_at) VALUES
 -- ============================================
 -- 注文明細 (order_items)
 -- ============================================
--- 各注文に1-3個の商品を紐付け
+-- 各注文に1-5個の商品を紐付け
+-- CROSS JOIN LATERAL:
+--   右側のサブクエリが左側(orders)の各行に対して実行されます。
+--   サブクエリでは左側(orders)の各行を参照できるようになります。
 INSERT INTO order_items (order_id, product_id, quantity, unit_price)
 SELECT
   o.id,
   p.id,
-  CASE WHEN p.price > 10000 THEN 1 ELSE floor(random() * 3 + 1)::int END,
+  -- 商品の価格によって購入個数を制御
+  CASE
+    WHEN p.price > 50000 THEN 1
+    WHEN p.price > 10000 THEN floor(random() * 2 + 1)::int
+    ELSE floor(random() * 4 + 1)::int
+  END,
   p.price
 FROM orders o
 CROSS JOIN LATERAL (
   SELECT id, price
   FROM products
+  WHERE o.id IS NOT NULL  -- NOTE: キャッシュされた結果が使われないように外側のテーブルを参照
   ORDER BY random()
-  LIMIT (floor(random() * 3 + 1)::int)
+  LIMIT (floor(random() * 5 + 1)::int)  -- 1 ~ 5件の商品を抽出
 ) p
 ON CONFLICT DO NOTHING;
