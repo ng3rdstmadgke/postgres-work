@@ -30,8 +30,8 @@ done
 
 # DockerHub: https://hub.docker.com/_/postgres
 IMAGE=postgres:18
-IMAGE=postgis/postgis:18-3.6
 IMAGE=pgvector/pgvector:pg18
+IMAGE=postgis/postgis:18-3.6
 if [ -n "$DUMP_CONF" ]; then
   docker run -i --rm \
   $IMAGE \
